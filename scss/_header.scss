@@ -1,0 +1,566 @@
+header {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 9.6rem;
+ border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+ display: flex;
+ z-index: 99;
+
+ .container {
+  @include flex(center, space-between);
+ }
+
+ .left {
+  display: flex;
+  align-items: center;
+
+  .logo {
+   position: relative;
+
+   &::after {
+    content: '';
+    position: absolute;
+    bottom: -2.7rem;
+    left: 0;
+    width: 43px;
+    border-top: 2px solid #00AEFF;
+   }
+  }
+
+  nav {
+   margin-left: 11.2rem;
+
+   ul {
+    display: flex;
+    align-items: center;
+
+    li {
+     &:not(:last-child) {
+      margin-right: 3.4rem;
+     }
+
+     a {
+      display: flex;
+      align-items: center;
+
+      &.active {
+       color: $primary-default;
+
+       img {
+        transform: rotate(180deg);
+       }
+      }
+
+      img {
+       margin-left: 1.4rem;
+       transition: all .3s ease;
+      }
+     }
+    }
+   }
+  }
+ }
+
+ .actions {
+  display: flex;
+  align-items: center;
+
+  .button {
+   &:not(:last-child) {
+    margin-right: 1.6rem;
+   }
+  }
+
+  .btn-mobile {
+   margin-left: 8.9rem;
+   display: none;
+  }
+ }
+
+ @media(max-width:991px) {
+  .left {
+   nav {
+    display: none;
+   }
+  }
+
+  .actions {
+   .btn-mobile {
+    display: block;
+   }
+  }
+ }
+
+ @media(max-width:550px) {
+  height: 80px;
+
+  .left {
+   .logo {
+    max-width: 69px;
+   }
+  }
+
+  .actions {
+   .button {
+    display: none;
+   }
+  }
+ }
+}
+
+aside {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 2022;
+ transition: opacity .3s;
+
+ opacity: 0;
+ pointer-events: none;
+
+ .content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $neutral-100;
+  transform: translateX(-100%);
+  transition: transform .3s;
+  flex: 1;
+
+  .itens-menu-mobile {
+   
+
+   li {
+    height: 70px;
+    display: flex;
+    border-bottom: 1px solid rgba(44, 52, 62, .4);
+
+    a {
+     padding: 0 2rem;
+     height: 100%;
+     flex: 1;
+     @include flex(center, space-between);
+     text-transform: uppercase;
+     font-weight: 600;
+
+     img {
+      margin-left: 1rem;
+      transform: rotate(-90deg);
+     }
+    }
+   }
+  }
+ }
+
+ .top-sub-menu {
+  background: $primary-dark;
+  padding: 2rem;
+  @include flex(center, space-between);
+  cursor: pointer;
+
+  strong {
+   text-transform: uppercase;
+  }
+
+  .fechar {
+   width: 25px;
+   height: 25px;
+   position: relative;
+
+   &::before,
+   &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+   }
+
+   &::before {
+    transform: rotate3d(0, 0, 1, -45deg);
+   }
+
+   &::after {
+    transform: rotate3d(0, 0, 1, 45deg);
+   }
+  }
+ }
+
+ .sub-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $neutral-100;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-100%);
+
+  transition: all .4s ease;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-track {
+   background-color: $primary-default;
+  }
+
+  &::-webkit-scrollbar {
+   width: 5px;
+   background-color: $primary-default;
+  }
+
+  &::-webkit-scrollbar-thumb {
+   background-color: $primary-default;
+  }
+
+  &.active {
+   opacity: 1;
+   pointer-events: all;
+   transform: translateX(0%);
+   transition: all .4s ease;
+  }
+
+  .top-sub-menu {
+
+   img {
+    transform: rotate(90deg);
+   }
+
+   span {
+    text-transform: uppercase;
+    font-weight: 600;
+   }
+  }
+
+  ul {
+   padding: 3rem;
+   @include flex(center, center);
+   flex-direction: column;
+
+   li {
+    &:not(:last-child) {
+     margin-bottom: 20px;
+    }
+
+    a {
+     text-transform: uppercase;
+    }
+   }
+  }
+ }
+}
+
+.menu {
+ padding-top: 9.6rem;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 4;
+ width: 100%;
+ filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+ background: linear-gradient(180deg, #020203 0%, rgba(14, 17, 23, 0.92) 96.35%, rgba(14, 17, 23, 0.9) 100%);
+ backdrop-filter: blur(12px);
+
+ transform: translateY(-100%);
+ opacity: 0;
+ transition: all .3s;
+ pointer-events: none;
+
+ &.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+ }
+
+ &.esportes {
+  .area-menu {
+   ul {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 6.4rem;
+
+    li {
+     a {
+      height: 23.7rem;
+
+      .icone {
+       width: 100%;
+       height: 17.9rem;
+      }
+     }
+    }
+   }
+  }
+ }
+
+ .area-menu {
+  padding-top: 3.8rem;
+  padding-bottom: 5.5rem;
+
+  ul {
+   display: grid;
+   grid-gap: 2.8rem 3.2rem;
+   grid-template-columns: repeat(6, 1fr);
+
+   li {
+    a {
+     width: 100%;
+     height: 17.6rem;
+     @include flex(center, center);
+     flex-direction: column;
+
+     &:hover {
+      span {
+       color: #ffffff;
+      }
+     }
+
+     .icone {
+      margin-bottom: 0.8rem;
+      width: 6.9rem;
+      height: 6.9rem;
+      @include flex(center, center);
+     }
+
+     span {
+      display: block;
+      text-align: center;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 120%;
+      color: #9D9D9D;
+      transition: color .3s ease;
+     }
+    }
+   }
+  }
+ }
+
+ .actions {
+  width: 100%;
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  background-color: rgba(21, 23, 27, 0.5);
+
+  ul {
+   @include flex(center, center);
+
+   li {
+    &:not(:last-child) {
+     margin-right: 6.4rem;
+    }
+
+    a {
+     display: flex;
+     align-items: center;
+
+     &:hover {
+      span {
+       color: $primary-default;
+      }
+     }
+
+     img {
+      margin-right: 1rem;
+     }
+
+     span {
+      font-weight: 600;
+      transition: color .3s ease;
+     }
+    }
+   }
+  }
+ }
+
+ @media(max-width:700px) {
+  display: none;
+ }
+}
+
+.modal {
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 999;
+ width: 100%;
+ height: 100%;
+ @include flex(center, center);
+
+ opacity: 0;
+ pointer-events: none;
+ transition: opacity .3s;
+
+ .content {
+  padding: 6.1rem 3rem;
+  background-color: $neutral-100;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 69.6rem;
+  background: url(../../img/home/bg-modal.png) no-repeat $neutral-200;
+  background-size: cover;
+  @include flex(center, flex-start);
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+
+  transform: translateY(50px);
+  transition: transform .3s;
+
+  .fechar {
+   position: absolute;
+   top: 2.4rem;
+   right: 2.4rem;
+   transition: transform .3s ease;
+
+   &:hover {
+    transform: rotate(90deg);
+   }
+  }
+
+  form {
+   margin: 4rem 0;
+   width: 100%;
+   max-width: 42.6rem;
+
+   .form-group {
+    width: 100%;
+    height: 48px;
+
+    &:first-child {
+     margin-bottom: 1.6rem;
+    }
+
+    &:last-child {
+     margin-top: 2.4rem;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+     padding: 0 1.6rem;
+     width: 100%;
+     height: 100%;
+     background-color: #FFFFFF;
+     border-radius: 4px;
+
+     font-weight: 500;
+     font-size: 15px;
+     color: #363842;
+
+     &::placeholder {
+      opacity: 0.6;
+     }
+    }
+
+    .button {
+     width: 100%;
+     border-radius: 4px;
+     justify-content: center;
+     line-height: 5.2rem;
+    }
+   }
+  }
+
+  .actions {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+   span {
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+   }
+
+   ul {
+    margin-top: 1.6rem;
+    margin-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+
+    li {
+     transition: transform .3s ease;
+
+     &:not(:last-child) {
+      margin-right: 1.6rem;
+     }
+
+     &:hover {
+      transform: scale(1.2);
+     }
+
+     button {
+      width: 4.8rem;
+      height: 4.8rem;
+      @include flex(center, center);
+      background-color: #ffffff;
+      border-radius: 0.4rem;
+     }
+    }
+   }
+
+   .links {
+    a {
+     color: $primary-default;
+     text-align: center;
+     display: block;
+     text-align: center;
+     transition: color .3s ease;
+
+     &:hover {
+      color: $primary-light;
+     }
+    }
+
+    p {
+     margin-bottom: 1.6rem;
+     text-align: center;
+     font-weight: 500;
+
+     >a {
+      display: inline;
+      text-align: left;
+     }
+    }
+   }
+  }
+ }
+
+ @media(max-width:700px) {
+  .content {
+   max-width: 95%;
+  }
+ }
+}
+
+.show-modal {
+ .modal {
+  opacity: 1;
+  pointer-events: all;
+
+  .content {
+   transform: translateY(0);
+  }
+ }
+}
+
+.menu-opened {
+ overflow: hidden;
+
+ aside {
+  opacity: 1;
+  pointer-events: all;
+
+  .content {
+   transform: translateX(0);
+  }
+ }
+}
